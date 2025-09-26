@@ -20,9 +20,10 @@ The project contains multiple pages for managing test cases, displaying statisti
 
 - *Add Test Cases Page*  
   - Allows adding new test cases with details.  
+  - Stores all data using *localStorage*.  
 
 - *View Test Cases Page*  
-  - Lists all added test cases.  
+  - Lists all added test cases from *localStorage*.  
   - Provides the option to *delete all test cases* at once.  
 
 - *Layout Components*  
@@ -36,6 +37,7 @@ The project contains multiple pages for managing test cases, displaying statisti
 - *HTML5*  
 - *CSS3*  
 - *JavaScript*  
+- *localStorage* (for saving and managing all test cases data)  
 
 ---
 
