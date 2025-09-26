@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Test Cases</title>
+  <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+
+<!--                header                    -->
+      <header>
+        <h2>Test Cases Manager</h2>
+        <button onclick="window.location.href='Login.html'">Logout</button>
+    </header>
+
+<!--                    saider                     -->
+        <div id="list">
+        <details>
+        <summary>☰ Menue</summary>
+        <ul id="lis">
+            <li><a href="Dashboard.html">Dashboard</a></li>
+            <li><a href="addcases.html">Add test casees</a></li>
+            <li id="viewtestcases"><a href="#">View test cases</a></li>
+        </ul>
+        </div>
+
+<!--              test cases table                -->
+  <h2 id="head">All Test Cases</h2>
+  <table cellpadding="8" id="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Steps</th>
+        <th>Test Data</th>
+        <th>Expected Result</th>
+        <th>Actual Result</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+ <center> <button onclick="cleardata()" id="btn">clear</button></center>
+
+<!--                 footer                   -->
+  <footer>
+    <div class="left">
+      <p><strong>Contact Info</strong></p>
+      <p>Email: ezat.mohamed@gmail.com</p>
+      <p>Phone: +20 1060197730</p>
+      <p><a href="https://www.linkedin.com/in/ezat7" target="_blank">LinkedIn Profile</a></p>
+    </div>
+
+    <div class="right">
+      <p><strong>About Me</strong></p>
+      <p>Software Tester with experience in manual, automation, and API testing. Passionate about delivering high-quality software and solving problems efficiently.</p>
+    </div>
+
+    <p class="copy">© 2025 Ezat Mohamed. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+
+
+//================= to get data from localStorage
+    let testCases = JSON.parse(localStorage.getItem("testCases")) || [];
+    let tableBody = document.getElementById("tableBody");
+    let pass=0
+    let fail=0
+    let notExecuted=0
+    if (testCases.length === 0) {
+      tableBody.innerHTML = "<tr><td colspan='7'>No Test Cases Found</td></tr>";
+    } else {
+      testCases.forEach(tc => {
+        let row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${tc.id}</td>
+          <td>${tc.title}</td>
+          <td>${tc.steps}</td>
+          <td>${tc.data}</td>
+          <td>${tc.expected}</td>
+          <td>${tc.actual}</td>
+          <td>${tc.status}</td>
+          
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+//======================= to clear data from local storage 
+    function cleardata(params) {
+      localStorage.clear()
+      location.reload()
+    }
+  </script>
+</body>
+</html>

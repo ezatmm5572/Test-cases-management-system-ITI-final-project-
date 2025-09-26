@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Cases Statistics</title>
+  <link rel="stylesheet" href="style4.css">
+</head>
+<body>
+
+<!--                   header                   -->
+  <header>
+    <h2>Test Cases Manager</h2>
+    <button onclick="window.location.href='Login.html'">Logout</button>
+  </header>
+
+<!--               siader                     -->
+      <div id="list">
+        <details>
+        <summary>☰ Menue</summary>
+        <ul id="lis">
+            <li id="dashboard"><a href="Dashboard.html">Dashboard</a></li>
+            <li><a href="addcases.html">Add test casees</a></li>
+            <li><a href="viewCases.html">View test cases</a></li>
+        </ul>
+        </div>
+  
+
+<!--                   stats box                       -->
+  <div id="statsBox">
+
+    <div id="totalc">
+    <p><strong>Total Test Cases:</strong> <span id="total"></span></p>
+    </div>
+    <div id="passc">
+    <p><strong>Pass:</strong> <span id="pass"></span></p>
+    </div>
+    <div id="failc">
+    <p><strong>Fail:</strong> <span id="fail"></span></p>
+    </div>
+    <div id="notex">
+    <p><strong>Not Executed:</strong> <span id="notExecuted"></span></p>
+    </div>
+  </div>
+
+<!--                 progress box                         -->
+  <div class="progress-box">
+  <h3>Test Cases Summary</h3>
+
+<p>Pass</p>
+<div class="bar">
+  <div id="passBar" class="fill pass"></div>
+</div>
+
+<p>Fail</p>
+<div class="bar">
+  <div id="failBar" class="fill fail"></div>
+</div>
+
+<p>Not Executed</p>
+<div class="bar">
+  <div id="notBar" class="fill not"></div>
+</div>
+</div>
+
+<!--                     footer                     -->
+  <footer>
+    <div class="left">
+      <p><strong>Contact Info</strong></p>
+      <p>Email: ezat.mohamed@gmail.com</p>
+      <p>Phone: +20 1060197730</p>
+      <p><a href="https://www.linkedin.com/in/ezat7" target="_blank">LinkedIn Profile</a></p>
+    </div>
+
+    <div class="right">
+      <p><strong>About Me</strong></p>
+      <p>Software Tester with experience in manual, automation, and API testing. Passionate about delivering high-quality software and solving problems efficiently.</p>
+    </div>
+
+    <p class="copy">© 2025 Ezat Mohamed. All Rights Reserved.</p>
+  </footer>
+
+
+
+  <script>
+
+//============================== get data
+    let testCases = JSON.parse(localStorage.getItem("testCases")) || [];
+
+    let passCount = testCases.filter(tc => tc.status === "Pass").length;
+    let failCount = testCases.filter(tc => tc.status === "Fail").length;
+    let notExecutedCount = testCases.filter(tc => tc.status === "Not Executed").length;
+
+//========================== view data
+    document.getElementById("total").textContent = testCases.length;
+    document.getElementById("pass").textContent = passCount;
+    document.getElementById("fail").textContent = failCount;
+    document.getElementById("notExecuted").textContent = notExecutedCount;
+    
+    let total = testCases.length;
+
+//================================== stats box
+function setBar(id, count) {
+  let percent;
+  if (total === 0) {
+    percent = 0;   
+  } else {
+    percent = Math.round((count / total) * 100);
+  }
+
+  let bar = document.getElementById(id);
+  bar.style.width = percent + "%";
+  bar.textContent = percent + "% (" + count + ")";
+}
+
+setBar("passBar", passCount);
+setBar("failBar", failCount);
+setBar("notBar", notExecutedCount);
+  </script>
+</body>
+</html>

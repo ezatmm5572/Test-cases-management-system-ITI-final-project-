@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test cases manger-Dashboard</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+<!--                      header                   -->
+    <header>
+        <h2>Test Cases Manager</h2>
+        <button onclick="window.location.href='Login.html'">Logout</button>
+    </header>
+
+<!--                        siader                -->
+        <div id="list">
+        <details>
+        <summary>☰ Menue</summary>
+        <ul id="lis">
+            <li><a href="Dashboard.html">Dashboard</a></li>
+            <li id="addtestcases"><a href="">Add test casees</a></li>
+            <li><a href="viewCases.html">View test cases</a></li>
+        </ul>
+        </div>
+
+<!--                  add test casess form                  -->
+        <div id="form">
+        <center>   <form action="" id="testForm">
+            <h2>Add test case</h2>
+            <label for="">Test case ID</label>
+        <input type="text" id="id" placeholder="Test Case ID" required><br><br>
+            <label for="">Test case title</label>
+        <input type="text" id="title" placeholder="Test Case Title" required><br><br>
+            <label for="">Steps</label>
+        <textarea id="steps" placeholder="Steps" required></textarea><br><br>
+            <label for="">Test Data</label>
+        <input type="text" id="data" placeholder="Test Data"><br><br>
+            <label for="">Expected Result</label>
+        <input type="text" id="expected" placeholder="Expected Result" required><br><br>
+            <label for="">Actual Result</label>
+        <input type="text" id="actual" placeholder="Actual Result"><br><br>
+        <select id="status" required>
+        <option value="">-- Select Status --</option>
+        <option value="Pass">Pass</option>
+        <option value="Fail">Fail</option>
+        <option value="Not Executed">Not Executed</option>
+        </select><br><br>
+        <button type="submit">Save Test Case</button>
+        </form></center>
+        </div>
+
+<!--                 footer                  -->
+          <footer>
+    <div class="left">
+      <p><strong>Contact Info</strong></p>
+      <p>Email: ezat.mohamed@gmail.com</p>
+      <p>Phone: +20 1060197730</p>
+      <p><a href="https://www.linkedin.com/in/ezat7" target="_blank">LinkedIn Profile</a></p>
+    </div>
+
+    <div class="right">
+      <p><strong>About Me</strong></p>
+      <p>Software Tester with experience in manual, automation, and API testing. Passionate about delivering high-quality software and solving problems efficiently.</p>
+    </div>
+
+    <p class="copy">© 2025 Ezat Mohamed. All Rights Reserved.</p>
+  </footer>
+
+
+          <script>
+
+//=================== to but data in localStorage
+    document.getElementById("testForm").addEventListener("submit", function(e){
+
+      let testCase = {
+        id: document.getElementById("id").value,
+        title: document.getElementById("title").value,
+        steps: document.getElementById("steps").value,
+        data: document.getElementById("data").value,
+        expected: document.getElementById("expected").value,
+        actual: document.getElementById("actual").value,
+        status: document.getElementById("status").value
+      };
+
+
+//================ to recerse data from string to array  of object 
+      let testCases = JSON.parse(localStorage.getItem("testCases")) || [];
+      testCases.push(testCase);
+      localStorage.setItem("testCases", JSON.stringify(testCases));
+      document.getElementById("testForm").reset();
+
+//=============== alert to check the progress is working will
+      alert("Test Case Saved!");
+    });
+  </script>
+
+</body>
+</html>
