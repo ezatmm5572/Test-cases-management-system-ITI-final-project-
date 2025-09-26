@@ -43,4 +43,4 @@ The project contains multiple pages for managing test cases, displaying statisti
 
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/your-username/test-cases-management-system.git
+   https://github.com/ezatmm5572/Test-cases-management-system-ITI-final-project-
